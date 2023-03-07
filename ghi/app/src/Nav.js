@@ -44,6 +44,11 @@ function Nav() {
                 Add Potential Customer
               </NavLink>
             </li>
+            <li>
+              <NavLink className="nav-link" to="/models/new">
+                Add a Vehicle Model
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>
