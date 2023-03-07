@@ -11,6 +11,7 @@ from django.http import JsonResponse
 class SalesPersonListEncoder(ModelEncoder):
     model = SalesPerson
     properties = [
+        "id",
         "name",
         "employee_number",
     ]
@@ -37,6 +38,7 @@ def list_sales_people(request):
 class CustomerListEncoder(ModelEncoder):
     model = Customer
     properties = [
+        "id",
         "name",
         "address",
         "phone",
