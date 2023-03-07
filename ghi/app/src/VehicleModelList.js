@@ -9,7 +9,6 @@ const VehicleModelList = () => {
 
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
       setVehicleModelList(data.models);
     }
   };
@@ -34,7 +33,12 @@ const VehicleModelList = () => {
               <td>{model.name}</td>
               <td>{model.manufacturer.name}</td>
               <td>
-                <img src={model.picture_url} alt="Add Image" />
+                <img
+                  src={model.picture_url}
+                  width={300}
+                  height={150}
+                  alt="Add Image"
+                />
               </td>
             </tr>
           );

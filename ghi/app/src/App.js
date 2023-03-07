@@ -9,6 +9,7 @@ import ManufacturerForm from "./ManufacturerForm";
 import VehicleModelList from "./VehicleModelList";
 import VehicleModelForm from "./VehicleModelForm";
 import AutomobileInventory from "./AutomobileInventory";
+import CreateAutomobileForm from "./CreateAutomobileForm";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/models/" element={<VehicleModelList />} />
           <Route path="/models/new" element={<VehicleModelForm />} />
           <Route path="/automobiles/" element={<AutomobileInventory />} />
+          <Route path="/automobiles/new" element={<CreateAutomobileForm />} />
           <Route path="technicianform" element={<TechnicianForm />} />
           <Route path="/sales_person" element={<CreateSalesPerson />} />
           <Route path="/customers" element={<CustomerForm />} />

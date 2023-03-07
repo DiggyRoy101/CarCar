@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-const VehicleModelForm = () => {
-  const [manufacturers, setManufacturers] = useState([]);
+const CreateAutomobileForm = () => {
+  const [models, setModels] = useState([]);
   const [formData, setFormData] = useState({
-    name: "",
-    picture_url: "",
-    manufacturer_id: "",
+    color: "",
+    year: "",
+    vin: "",
+    model_id: "",
   });
 
   const handleChange = (e) => {
@@ -16,20 +17,19 @@ const VehicleModelForm = () => {
   };
 
   const fetchData = async () => {
-    const url = "http://localhost:8100/api/manufacturers/";
+    const url = "http://localhost:8100/api/models/";
     const response = await fetch(url);
 
     if (response.ok) {
       const data = await response.json();
-      setManufacturers(data.manufacturers);
+      setModels(data.models);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(formData);
-    const vehicleModelUrl = "http://localhost:8100/api/models/";
+    const inventoryUrl = "http://localhost:8100/api/automobiles/";
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(formData),
@@ -37,15 +37,16 @@ const VehicleModelForm = () => {
         "Content-Type": "application/json",
       },
     };
-    const response = await fetch(vehicleModelUrl, fetchConfig);
+    const response = await fetch(inventoryUrl, fetchConfig);
     if (response.ok) {
-      const newVehicleModel = await response.json();
-      console.log(newVehicleModel);
+      const newAutomobile = await response.json();
+      console.log(newAutomobile);
 
       setFormData({
-        name: "",
-        picture_url: "",
-        manufacturer_id: "",
+        color: "",
+        year: "",
+        vin: "",
+        model_id: "",
       });
     }
   };
@@ -58,48 +59,61 @@ const VehicleModelForm = () => {
     <div className="row">
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
-          <h1>Add a Vehicle Model</h1>
-          <form onSubmit={handleSubmit} id="create-vehicle-model-form">
+          <h1>Add an Automobile</h1>
+          <form onSubmit={handleSubmit} id="create-automobile-form">
             <div className="form-floating mb-3">
               <input
                 onChange={handleChange}
-                placeholder="Name"
+                placeholder="Color"
                 required
                 type="text"
-                value={formData.name}
-                name="name"
-                id="name"
+                value={formData.color}
+                name="color"
+                id="color"
                 className="form-control"
               />
-              <label htmlFor="model_name">Name</label>
+              <label htmlFor="model_name">Color</label>
             </div>
             <div className="form-floating mb-3">
               <input
                 onChange={handleChange}
-                placeholder="Picture Url"
+                placeholder="Year"
                 required
                 type="text"
-                value={formData.picture_url}
-                name="picture_url"
-                id="picture_url"
+                value={formData.year}
+                name="year"
+                id="year"
                 className="form-control"
               />
-              <label htmlFor="model_name">Picture URL</label>
+              <label htmlFor="model_name">Year</label>
+            </div>
+            <div className="form-floating mb-3">
+              <input
+                onChange={handleChange}
+                placeholder="VIN"
+                required
+                type="text"
+                value={formData.vin}
+                name="vin"
+                id="vin"
+                className="form-control"
+              />
+              <label htmlFor="model_name">VIN</label>
             </div>
             <div className="mb-3">
               <select
                 onChange={handleChange}
                 required
-                value={formData.manufacturer_id}
-                name="manufacturer_id"
-                id="manufacturer_id"
+                value={formData.model_id}
+                name="model_id"
+                id="model_id"
                 className="form-select"
               >
-                <option value="">Choose a Manufacturer</option>
-                {manufacturers.map((manufacturer) => {
+                <option value="">Choose a Model</option>
+                {models.map((model) => {
                   return (
-                    <option key={manufacturer.id} value={manufacturer.id}>
-                      {manufacturer.name}
+                    <option key={model.id} value={model.id}>
+                      {model.name}
                     </option>
                   );
                 })}
@@ -113,4 +127,4 @@ const VehicleModelForm = () => {
   );
 };
 
-export default VehicleModelForm;
+export default CreateAutomobileForm;
