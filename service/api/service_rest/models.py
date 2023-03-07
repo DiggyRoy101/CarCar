@@ -34,4 +34,16 @@ class AutomobileVO(models.Model):
     def get_api_url(self):
         return reverse("api_automobile", kwargs={"vin": self.vin})
 
+class Appointments(models.Model):
+    vin = models.CharField(max_length=17, unique=True)
+    customer_name=models.CharField(max_length=50)
+    date=models.DateField()
+    time=models.TimeField()
+    technician=models.CharField(max_length=50)
+    reason=models.TextField()
+
+    def get_api_url(self):
+        return reverse("api_show_appointments", kwargs={"pk": self.pk})
     
+    def __str__(self):
+        return self.name
