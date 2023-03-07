@@ -6,6 +6,7 @@ import CustomerForm from "./CustomerForm";
 import TechnicianForm from "./TechnicianForm";
 import ManufacturerList from "./ManufacturerList";
 import ManufacturerForm from "./ManufacturerForm";
+import VehicleModelList from "./VehicleModelList";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/manufacturers/" element={<ManufacturerList />} />
           <Route path="/manufacturers/new" element={<ManufacturerForm />} />
+          <Route path="/models/" element={<VehicleModelList />} />
           <Route path="technicianform" element={<TechnicianForm />} />
           <Route path="/sales_person" element={<CreateSalesPerson />} />
           <Route path="/customers" element={<CustomerForm />} />
