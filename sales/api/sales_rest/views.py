@@ -42,5 +42,19 @@ class CustomerListEncoder(ModelEncoder):
         "phone",
     ]
 
-# @require_http_methods(["GET", "POST"])
-# def list_customers(request):
+@require_http_methods(["GET", "POST"])
+def list_customers(request):
+    if request.method == "GET":
+        customers = Customer.objects.all()
+        return JsonResponse(
+            {"customers": customers},
+            encoder=CustomerListEncoder,
+        )
+    else:
+        content = json.loads(request.body)
+        customer = Customer.objects.create(**content)
+        return JsonResponse(
+            customer,
+            encoder=CustomerListEncoder,
+            safe=False
+        )

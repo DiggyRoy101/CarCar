@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-const CreateSalesPerson = () => {
+const CustomerForm = () => {
   const [formData, setFormData] = useState({
     name: "",
-    employee_number: "",
+    address: "",
+    phone: "",
   });
 
   const handleChange = (e) => {
@@ -16,7 +17,7 @@ const CreateSalesPerson = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const salesPersonUrl = "http://localhost:8090/api/sales_people/";
+    const customerUrl = "http://localhost:8090/api/customers/";
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(formData),
@@ -24,14 +25,15 @@ const CreateSalesPerson = () => {
         "Content-Type": "application/json",
       },
     };
-    const response = await fetch(salesPersonUrl, fetchConfig);
+    const response = await fetch(customerUrl, fetchConfig);
     if (response.ok) {
-      const newSalesPerson = await response.json();
-      console.log(newSalesPerson);
+      const newCustomer = await response.json();
+      console.log(newCustomer);
 
       setFormData({
         name: "",
-        employee_number: "",
+        address: "",
+        phone: "",
       });
     }
   };
@@ -41,7 +43,7 @@ const CreateSalesPerson = () => {
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
           <h1>Add a Sales Person</h1>
-          <form onSubmit={handleSubmit} id="create-sales-person-form">
+          <form onSubmit={handleSubmit} id="create-customer-form">
             <div className="form-floating mb-3">
               <input
                 onChange={handleChange}
@@ -58,15 +60,28 @@ const CreateSalesPerson = () => {
             <div className="form-floating mb-3">
               <input
                 onChange={handleChange}
-                placeholder="Employee number"
+                placeholder="Address"
                 required
-                type="number"
-                value={formData.employee_number}
-                name="employee_number"
-                id="employee_number"
+                type="address"
+                value={formData.address}
+                name="address"
+                id="address"
                 className="form-control"
               />
-              <label htmlFor="employee_number">Employee Number</label>
+              <label htmlFor="address">Address</label>
+            </div>
+            <div className="form-floating mb-3">
+              <input
+                onChange={handleChange}
+                placeholder="Phone"
+                required
+                type="phone"
+                value={formData.phone}
+                name="phone"
+                id="phone"
+                className="form-control"
+              />
+              <label htmlFor="phone">Phone</label>
             </div>
             <button className="btn btn-primary">Create</button>
           </form>
@@ -76,4 +91,4 @@ const CreateSalesPerson = () => {
   );
 };
 
-export default CreateSalesPerson;
+export default CustomerForm;

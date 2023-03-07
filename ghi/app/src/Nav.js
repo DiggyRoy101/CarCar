@@ -7,9 +7,6 @@ function Nav() {
         <NavLink className="navbar-brand" to="/">
           CarCar
         </NavLink>
-        <NavLink className="navbar-brand" to="/sales_person">
-          Create Sales Person
-        </NavLink>
         <button
           className="navbar-toggler"
           type="button"
@@ -22,7 +19,18 @@ function Nav() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/sales_person">
+                Add Sales Person
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/customers">
+                Add Potential Customer
+              </NavLink>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
