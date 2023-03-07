@@ -40,7 +40,7 @@ class Appointments(models.Model):
     date=models.DateField()
     time=models.TimeField()
     technician=models.CharField(max_length=50)
-    reason=models.TextField()
+    reason=models.CharField(max_length=200)
 
     def get_api_url(self):
         return reverse("api_show_appointments", kwargs={"pk": self.pk})

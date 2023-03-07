@@ -4,6 +4,7 @@ import Nav from "./Nav";
 import CreateSalesPerson from "./CreateSalesPerson";
 import CustomerForm from "./CustomerForm";
 import TechnicianForm from "./TechnicianForm";
+import ServiceAppointmentForm from "./ServiceAppointment";
 import ManufacturerList from "./ManufacturerList";
 import ManufacturerForm from "./ManufacturerForm";
 import VehicleModelList from "./VehicleModelList";
@@ -25,6 +26,7 @@ function App() {
           <Route path="/automobiles/" element={<AutomobileInventory />} />
           <Route path="/automobiles/new" element={<CreateAutomobileForm />} />
           <Route path="technicianform" element={<TechnicianForm />} />
+          <Route path="serviceappointmentform"element={<ServiceAppointmentForm />} />
           <Route path="/sales_person" element={<CreateSalesPerson />} />
           <Route path="/customers" element={<CustomerForm />} />
         </Routes>
