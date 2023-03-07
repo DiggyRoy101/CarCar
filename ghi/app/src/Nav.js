@@ -49,6 +49,11 @@ function Nav() {
                 Add a Vehicle Model
               </NavLink>
             </li>
+            <li>
+              <NavLink className="nav-link" to="/automobiles/">
+                Automobile Inventory
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>
