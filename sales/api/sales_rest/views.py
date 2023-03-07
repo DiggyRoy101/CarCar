@@ -93,10 +93,22 @@ def list_sales_record(request):
         )
     else:
         content = json.loads(request.body)
-        print(content)
-        sale = SalesRecord.objects.create(**content)
-        return JsonResponse(
-            sale,
-            encoder=SalesListEncoder,
-            safe=False
-        )
+        try:
+            automobile_href = content["automobile"]
+            automobile = AutomobileVO.objects.get(import_href=automobile_href)
+            content["automobile"] = automobile
+            sales_person_id = content["sales_person_id"]
+            sales_person = SalesPerson.objects.get(id=sales_person_id)
+            content["sales_person"] = sales_person
+            customer_id = content["customer_id"]
+            customer = Customer.objects.get(id=customer_id)
+            content["customer"] = customer
+            sale = SalesRecord.objects.create(**content)
+            return JsonResponse(
+                sale,
+                encoder=SalesListEncoder,
+                safe=False
+            )
+        except Exception as e:
+            return JsonResponse(str(e), safe=False)
+        
