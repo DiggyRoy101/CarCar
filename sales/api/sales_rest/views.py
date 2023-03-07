@@ -32,3 +32,15 @@ def list_sales_people(request):
             encoder=SalesPersonListEncoder,
             safe=False,
         )
+
+
+class CustomerListEncoder(ModelEncoder):
+    model = Customer
+    properties = [
+        "name",
+        "address",
+        "phone",
+    ]
+
+# @require_http_methods(["GET", "POST"])
+# def list_customers(request):
