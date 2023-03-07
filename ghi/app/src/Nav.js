@@ -24,36 +24,32 @@ function Nav() {
               <NavLink className="nav-link" to="/manufacturers/">
                 List of Manufacturers
               </NavLink>
-            </li>
-            <li className="nav-item">
               <NavLink className="nav-link" to="/technicianform">
                 Technician Form
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/ServiceAppointmentForm">
-                Create Service Appointment
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/manufacturers/new">
                 Create a Manufacturer
               </NavLink>
-              <NavLink className="nav-link" to="/sales_person">
-                Add Sales Person
+              <NavLink className="nav-link" to="/ServiceAppointmentForm">
+                Create Service Appointment
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/models/">
                 Vehicle Models
               </NavLink>
-              <NavLink className="nav-link" to="/customers">
-                Add Potential Customer
+              <NavLink className="nav-link" to="/sales_person">
+                Add Sales Person
               </NavLink>
             </li>
             <li>
               <NavLink className="nav-link" to="/models/new">
                 Add a Vehicle Model
+              </NavLink>
+              <NavLink className="nav-link" to="/customers">
+                Add Potential Customer
               </NavLink>
             </li>
             <li>

@@ -60,3 +60,43 @@ def list_customers(request):
             encoder=CustomerListEncoder,
             safe=False
         )
+    
+class AutomobileVOEncoder(ModelEncoder):
+    model = AutomobileVO
+    properties = [
+        "id",
+        "vin",
+        "import_href",
+    ]
+
+class SalesListEncoder(ModelEncoder):
+    model = SalesRecord
+    properties = [
+        "automobile",
+        "sales_person",
+        "customer",
+        "price",
+    ]
+    encoders= {
+        "automobile": AutomobileVOEncoder(),
+        "sales_person": SalesPersonListEncoder(),
+        "customer": CustomerListEncoder(),
+    }
+
+@require_http_methods(["GET", "POST"])
+def list_sales_record(request):
+    if request.method == "GET":
+        sales = SalesRecord.objects.all()
+        return JsonResponse(
+            {"sales": sales},
+            encoder=SalesListEncoder,
+        )
+    else:
+        content = json.loads(request.body)
+        print(content)
+        sale = SalesRecord.objects.create(**content)
+        return JsonResponse(
+            sale,
+            encoder=SalesListEncoder,
+            safe=False
+        )
