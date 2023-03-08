@@ -4,8 +4,8 @@ function ServiceAppointmentForm() {
     const [appointments, setAppointments] = useState([])
 
     const [formData, setFormData] = useState({
-        vin: "",
-        vehicle_owner:"",
+        vehicle: "",
+        customer_name:"",
         date:"",
         time:"",
         technician:"",
@@ -18,15 +18,15 @@ function ServiceAppointmentForm() {
             [e.target.name]: e.target.value,
         })
     }
-    const fetchData = async () => {
-        const url = 'http://localhost:8100/api/inventory/';
-        const response = await fetch(url)
+    // const fetchData = async () => {
+    //     const url = 'http://localhost:8100/api/inventory/';
+    //     const response = await fetch(url)
 
-        if(response.ok) {
-            const data = await response.json()
-            setAppointments(data.appointments)
-            }
-        }
+    //     if(response.ok) {
+    //         const data = await response.json()
+    //         setAppointments(data.appointments)
+    //         }
+    //     }
     const handleSubmit = async (event) => {
         event.preventDefault();
         console.log(formData)
