@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 function TechnicianForm() {
 
     const [formData, setFormData] = useState({
-        technician: "",
+        name: "",
         employee_no:"",
     })
 
@@ -28,7 +28,7 @@ function TechnicianForm() {
             const response = await fetch(Url, fetchConfig);
             if (response.ok) {
                 setFormData({
-                    technician: "",
+                    name: "",
                     employee_no:"",
                 })
             }
@@ -41,8 +41,8 @@ function TechnicianForm() {
                     <h1>Technician Form</h1>
                     <form onSubmit={handleSubmit} id="create-shoes-form">
                        <div className="form-floating mb-3">
-                            <input onChange={handleNameChange} value={formData.technician} placeholder="Technician" required type ="text" name="technician" id="technician" className="form-control"></input>
-                            <label htmlFor="Technician">Technician Name</label>
+                            <input onChange={handleNameChange} value={formData.technician} placeholder="Name" required type ="text" name="name" id="name" className="form-control"></input>
+                            <label htmlFor="Name">Technician Name</label>
                         </div>
                         <div className="form-floating mb-3">
                             <input onChange={handleNameChange} value={formData.employee_no} placeholder="Employee_No" required type ="text" name="employee_no" id="employee_no" className="form-control"></input>
