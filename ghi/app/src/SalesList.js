@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const ListSales = () => {
+const SalesList = () => {
   const [salesList, setSalesList] = useState([]);
   const fetchData = async () => {
     const url = "http://localhost:8090/api/sales/";
@@ -45,4 +45,4 @@ const ListSales = () => {
   );
 };
 
-export default ListSales;
+export default SalesList;

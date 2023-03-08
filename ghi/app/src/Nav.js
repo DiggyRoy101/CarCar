@@ -57,12 +57,15 @@ function Nav() {
                 Automobile Inventory
               </NavLink>
               <NavLink className="nav-link" to="/sales/">
-                All Sales
+                List of All Sales
               </NavLink>
             </li>
             <li>
               <NavLink className="nav-link" to="/automobiles/new">
                 Create Automobile
+              </NavLink>
+              <NavLink className="nav-link" to="/sales/new">
+                Record a Sale
               </NavLink>
             </li>
           </ul>
