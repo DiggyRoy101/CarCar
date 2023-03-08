@@ -13,6 +13,7 @@ import AutomobileInventory from "./AutomobileInventory";
 import CreateAutomobileForm from "./CreateAutomobileForm";
 import SalesList from "./SalesList";
 import SalesForm from "./SalesForm";
+import SalesPersonHistory from "./SalesPersonHistory";
 
 function App() {
   return (
@@ -36,6 +37,10 @@ function App() {
           <Route path="/customers" element={<CustomerForm />} />
           <Route path="/sales" element={<SalesList />} />
           <Route path="/sales/new" element={<SalesForm />} />
+          <Route
+            path="/sales/employee"
+            element={<SalesPersonHistory />}
+          ></Route>
         </Routes>
       </div>
     </BrowserRouter>
