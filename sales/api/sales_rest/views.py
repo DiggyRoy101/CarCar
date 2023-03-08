@@ -1,20 +1,10 @@
-from django.shortcuts import render
-from .models import AutomobileVO, SalesPerson, SalesRecord, Customer
-from common.json import ModelEncoder
+from .encoders import SalesListEncoder, SalesPersonListEncoder, CustomerListEncoder
+from .models import SalesPerson, Customer, SalesRecord, AutomobileVO
 from django.views.decorators.http import require_http_methods
 import json
 from django.http import JsonResponse
 
 # Create your views here.
-
-
-class SalesPersonListEncoder(ModelEncoder):
-    model = SalesPerson
-    properties = [
-        "id",
-        "name",
-        "employee_number",
-    ]
 
 
 @require_http_methods(["GET", "POST"])
@@ -35,15 +25,6 @@ def list_sales_people(request):
         )
 
 
-class CustomerListEncoder(ModelEncoder):
-    model = Customer
-    properties = [
-        "id",
-        "name",
-        "address",
-        "phone",
-    ]
-
 @require_http_methods(["GET", "POST"])
 def list_customers(request):
     if request.method == "GET":
@@ -61,28 +42,6 @@ def list_customers(request):
             safe=False
         )
     
-class AutomobileVOEncoder(ModelEncoder):
-    model = AutomobileVO
-    properties = [
-        "id",
-        "vin",
-        "import_href",
-    ]
-
-class SalesListEncoder(ModelEncoder):
-    model = SalesRecord
-    properties = [
-        "id",
-        "automobile",
-        "sales_person",
-        "customer",
-        "price",
-    ]
-    encoders= {
-        "automobile": AutomobileVOEncoder(),
-        "sales_person": SalesPersonListEncoder(),
-        "customer": CustomerListEncoder(),
-    }
 
 @require_http_methods(["GET", "POST"])
 def list_sales_record(request):
@@ -112,4 +71,3 @@ def list_sales_record(request):
             )
         except Exception as e:
             return JsonResponse(str(e), safe=False)
-        

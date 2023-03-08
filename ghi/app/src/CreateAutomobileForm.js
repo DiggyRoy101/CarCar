@@ -40,7 +40,6 @@ const CreateAutomobileForm = () => {
     const response = await fetch(inventoryUrl, fetchConfig);
     if (response.ok) {
       const newAutomobile = await response.json();
-      console.log(newAutomobile);
 
       setFormData({
         color: "",

@@ -62,7 +62,6 @@ const SalesForm = () => {
     const response = await fetch(salesUrl, fetchConfig);
     if (response.ok) {
       const newSale = await response.json();
-      console.log(newSale);
 
       setFormData({
         automobile: "",
