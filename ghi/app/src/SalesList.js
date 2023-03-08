@@ -18,30 +18,35 @@ const SalesList = () => {
   }, []);
 
   return (
-    <table className="table table-striped">
-      <thead>
-        <tr>
-          <th>Sales Person</th>
-          <th>Employee Number</th>
-          <th>Purchaser</th>
-          <th>VIN</th>
-          <th>Sale Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        {salesList.map((sale) => {
-          return (
-            <tr key={sale.id}>
-              <td>{sale.sales_person.name}</td>
-              <td>{sale.sales_person.employee_number}</td>
-              <td>{sale.customer.name}</td>
-              <td>{sale.automobile.vin}</td>
-              <td>{sale.price}</td>
+    <div className="shadow p-4 mt-4">
+      <div className="mb-3">
+        <h1>List of All Sales</h1>
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th>Sales Person</th>
+              <th>Employee Number</th>
+              <th>Purchaser</th>
+              <th>VIN</th>
+              <th>Sale Price</th>
             </tr>
-          );
-        })}
-      </tbody>
-    </table>
+          </thead>
+          <tbody>
+            {salesList.map((sale) => {
+              return (
+                <tr key={sale.id}>
+                  <td>{sale.sales_person.name}</td>
+                  <td>{sale.sales_person.employee_number}</td>
+                  <td>{sale.customer.name}</td>
+                  <td>{sale.automobile.vin}</td>
+                  <td>{sale.price}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 };
 
