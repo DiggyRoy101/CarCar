@@ -22,28 +22,33 @@ class VehicleModelVO(models.Model):
         
 class AutomobileVO(models.Model):
     import_href = models.CharField(max_length=200, unique=True)
-    color = models.CharField(max_length=50)
-    year = models.PositiveSmallIntegerField()
     vin = models.CharField(max_length=17, unique=True)
 
-    model = models.ForeignKey(
-        VehicleModelVO,
-        related_name="automobiles",
-        on_delete=models.CASCADE,
-    )
-    def get_api_url(self):
-        return reverse("api_automobile", kwargs={"vin": self.vin})
+class Technician(models.Model):
+    name = models.CharField(max_length=50)
+    employee_no = models.PositiveSmallIntegerField()
 
 class Appointments(models.Model):
-    vin = models.CharField(max_length=17, unique=True)
+    vehicle = models.ForeignKey(
+        AutomobileVO,
+        related_name="vehicle",
+        on_delete=models.CASCADE,
+        default=None
+    )
     customer_name=models.CharField(max_length=50)
-    date=models.DateField()
-    time=models.TimeField()
-    technician=models.CharField(max_length=50)
+    date=models.CharField(max_length=50)
+    time=models.CharField(max_length=50)
+    technician= models.ForeignKey(
+        Technician,
+        related_name="technician",
+        on_delete=models.CASCADE,
+    )
     reason=models.CharField(max_length=200)
-
-    def get_api_url(self):
-        return reverse("api_show_appointments", kwargs={"pk": self.pk})
     
     def __str__(self):
         return self.name
+    
+
+
+
+

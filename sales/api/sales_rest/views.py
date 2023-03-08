@@ -94,6 +94,7 @@ def list_sales_record(request):
         )
     else:
         content = json.loads(request.body)
+        print(content)
         try:
             automobile_href = content["automobile"]
             automobile = AutomobileVO.objects.get(import_href=automobile_href)

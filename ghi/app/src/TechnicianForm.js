@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 function TechnicianForm() {
-    const [automobiles, setAutomobiles] = useState([])
 
     const [formData, setFormData] = useState({
         technician: "",
@@ -14,20 +13,11 @@ function TechnicianForm() {
             [e.target.name]: e.target.value,
         })
     }
-    const fetchData = async () => {
-        const url = 'http://localhost:8100/api/inventory/';
-        const response = await fetch(url)
-
-        if(response.ok) {
-            const data = await response.json()
-            setAutomobiles(data.automobiles)
-            }
-        }
     const handleSubmit = async (event) => {
         event.preventDefault();
         console.log(formData)
 
-        const serviceUrl = 'http://localhost:8080/api/service/';
+        const Url = 'http://localhost:8080/api/technician/';
             const fetchConfig = {
             method: "post",
             body: JSON.stringify(formData),
@@ -35,7 +25,7 @@ function TechnicianForm() {
                 'Content-Type': 'application/json',
             },
             };
-            const response = await fetch(serviceUrl, fetchConfig);
+            const response = await fetch(Url, fetchConfig);
             if (response.ok) {
                 setFormData({
                     technician: "",
@@ -43,9 +33,6 @@ function TechnicianForm() {
                 })
             }
     };
-    useEffect(() => {
-        fetchData();
-    }, [])
 
     return (
         <div className="row">
