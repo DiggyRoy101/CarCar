@@ -50,14 +50,16 @@ const SalesPersonHistory = () => {
         })}
       </select>
       <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>Sales Person</th>
-            <th>Purchaser</th>
-            <th>VIN</th>
-            <th>Sale Price</th>
-          </tr>
-        </thead>
+        {selectedSalesPersonID.length > 0 && (
+          <thead>
+            <tr>
+              <th>Sales Person</th>
+              <th>Purchaser</th>
+              <th>VIN</th>
+              <th>Sale Price</th>
+            </tr>
+          </thead>
+        )}
         <tbody>
           {filteredSalesList.map((sale) => {
             return (
