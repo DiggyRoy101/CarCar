@@ -4,8 +4,8 @@ function ServiceAppointmentForm() {
   const [appointments, setAppointments] = useState([]);
 
   const [formData, setFormData] = useState({
-    vin: "",
-    vehicle_owner: "",
+    vehicle: "",
+    customer_name: "",
     date: "",
     time: "",
     technician: "",
@@ -26,17 +26,38 @@ function ServiceAppointmentForm() {
       const data = await response.json();
       setAppointments(data.appointments);
     }
-  };
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+    // const fetchData = async () => {
+    //     const url = 'http://localhost:8100/api/inventory/';
+    //     const response = await fetch(url)
 
-    const serviceUrl = "http://localhost:8080/api/service/";
-    const fetchConfig = {
-      method: "post",
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-Type": "application/json",
-      },
+    //     if(response.ok) {
+    //         const data = await response.json()
+    //         setAppointments(data.appointments)
+    //         }
+    //     }
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      console.log(formData);
+
+      const serviceUrl = "http://localhost:8080/api/service/";
+      const fetchConfig = {
+        method: "post",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const response = await fetch(serviceUrl, fetchConfig);
+      if (response.ok) {
+        setFormData({
+          vin: "",
+          vehicle_owner: "",
+          date: "",
+          time: "",
+          technician: "",
+          reason: "",
+        });
+      }
     };
     const response = await fetch(serviceUrl, fetchConfig);
     if (response.ok) {

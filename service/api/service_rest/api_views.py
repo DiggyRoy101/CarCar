@@ -47,9 +47,9 @@ def api_list_appointments(request):
         print(content)
         try:
             vehicle_href = content["vehicle"]
-            print("hi")
+            print(vehicle_href,AutomobileVO.objects.all)
             vehicle = AutomobileVO.objects.get(import_href=vehicle_href)
-            print("bi")
+            print("bye")
             content["vehicle"] = vehicle
             technician_id = content["technician"]
             technician = Technician.objects.get(id=technician_id)
