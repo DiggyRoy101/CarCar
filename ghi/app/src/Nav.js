@@ -32,8 +32,13 @@ function Nav() {
               </a>
               <ul class="dropdown-menu dropdown-menu-dark">
                 <li>
+                  <NavLink className="nav-link" to="/automobiles/">
+                    Automobile Inventory
+                  </NavLink>
+                </li>
+                <li>
                   <NavLink className="nav-link" to="/manufacturers/">
-                    List of Manufacturers
+                    Manufacturers
                   </NavLink>
                 </li>
                 <li>
@@ -42,18 +47,18 @@ function Nav() {
                   </NavLink>
                 </li>
                 <li>
+                  <NavLink className="nav-link" to="/automobiles/new">
+                    Add an Automobile
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="nav-link" to="/manufacturers/new">
+                    Add a Manufacturer
+                  </NavLink>
+                </li>
+                <li>
                   <NavLink className="nav-link" to="/models/new">
                     Add a Vehicle Model
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink className="nav-link" to="/automobiles/">
-                    Automobile Inventory
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink className="nav-link" to="/automobiles/new">
-                    Create Automobile
                   </NavLink>
                 </li>
               </ul>
