@@ -34,30 +34,18 @@ function ServiceAppointmentForm() {
     //         const data = await response.json()
     //         setAppointments(data.appointments)
     //         }
-    //     }
-    const handleSubmit = async (event) => {
-      event.preventDefault();
-      console.log(formData);
+  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formData);
 
-      const serviceUrl = "http://localhost:8080/api/service/";
-      const fetchConfig = {
-        method: "post",
-        body: JSON.stringify(formData),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      const response = await fetch(serviceUrl, fetchConfig);
-      if (response.ok) {
-        setFormData({
-          vin: "",
-          vehicle_owner: "",
-          date: "",
-          time: "",
-          technician: "",
-          reason: "",
-        });
-      }
+    const serviceUrl = "http://localhost:8080/api/service/";
+    const fetchConfig = {
+      method: "post",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json",
+      },
     };
     const response = await fetch(serviceUrl, fetchConfig);
     if (response.ok) {
@@ -71,6 +59,7 @@ function ServiceAppointmentForm() {
       });
     }
   };
+
   useEffect(() => {
     fetchData();
   }, []);

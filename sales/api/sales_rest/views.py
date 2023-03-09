@@ -1,10 +1,18 @@
-from .encoders import SalesListEncoder, SalesPersonListEncoder, CustomerListEncoder
+from .encoders import SalesListEncoder, SalesPersonListEncoder, CustomerListEncoder, AutomobileVOEncoder
 from .models import SalesPerson, Customer, SalesRecord, AutomobileVO
 from django.views.decorators.http import require_http_methods
 import json
 from django.http import JsonResponse
 
 # Create your views here.
+@require_http_methods(["GET"])
+def list_auto_VO(request):
+    if request.method == "GET":
+        autos = AutomobileVO.objects.all()
+        return JsonResponse(
+            {"autos": autos},
+            encoder=AutomobileVOEncoder
+        )
 
 
 @require_http_methods(["GET", "POST"])
@@ -55,6 +63,7 @@ def list_sales_record(request):
         content = json.loads(request.body)
         try:
             automobile_href = content["automobile"]
+            AutomobileVO.objects.filter(import_href=automobile_href).update(sold=True)
             automobile = AutomobileVO.objects.get(import_href=automobile_href)
             content["automobile"] = automobile
             sales_person_id = content["sales_person_id"]

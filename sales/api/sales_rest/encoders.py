@@ -27,6 +27,7 @@ class AutomobileVOEncoder(ModelEncoder):
         "id",
         "vin",
         "import_href",
+        "sold",
     ]
 
 
