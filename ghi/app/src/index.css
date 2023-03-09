@@ -13,8 +13,9 @@ code {
 }
 
 .bg-image{
-  object-fit: scale-down;
   object-position: center center;
-  height: 80vh;
+  height: auto;
+  max-width: 100%;
+  width: auto\9;
 }
 
