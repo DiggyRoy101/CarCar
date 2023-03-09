@@ -18,11 +18,11 @@ function Nav() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-          <ul class="navbar-nav">
-            <li class="nav-item dropdown">
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav">
+            <li className="nav-item dropdown">
               <a
-                class="nav-link dropdown-toggle"
+                className="nav-link dropdown-toggle"
                 href="#"
                 role="button"
                 data-bs-toggle="dropdown"
@@ -30,7 +30,7 @@ function Nav() {
               >
                 Inventory
               </a>
-              <ul class="dropdown-menu dropdown-menu-dark">
+              <ul className="dropdown-menu dropdown-menu-dark bg-success">
                 <li>
                   <NavLink className="nav-link" to="/automobiles/">
                     Automobile Inventory
@@ -63,9 +63,9 @@ function Nav() {
                 </li>
               </ul>
             </li>
-            <li class="nav-item dropdown">
+            <li className="nav-item dropdown">
               <a
-                class="nav-link dropdown-toggle"
+                className="nav-link dropdown-toggle"
                 href="#"
                 role="button"
                 data-bs-toggle="dropdown"
@@ -73,7 +73,7 @@ function Nav() {
               >
                 Services
               </a>
-              <ul class="dropdown-menu dropdown-menu-dark">
+              <ul className="dropdown-menu dropdown-menu-dark bg-success">
                 <li>
                   <NavLink className="nav-link" to="/technicianform">
                     Technician Form
@@ -86,9 +86,9 @@ function Nav() {
                 </li>
               </ul>
             </li>
-            <li class="nav-item dropdown">
+            <li className="nav-item dropdown">
               <a
-                class="nav-link dropdown-toggle"
+                className="nav-link dropdown-toggle"
                 href="#"
                 role="button"
                 data-bs-toggle="dropdown"
@@ -96,7 +96,7 @@ function Nav() {
               >
                 Sales
               </a>
-              <ul class="dropdown-menu dropdown-menu-dark">
+              <ul className="dropdown-menu dropdown-menu-dark bg-success">
                 <li>
                   <NavLink className="nav-link" to="/sales_person">
                     Add Sales Person

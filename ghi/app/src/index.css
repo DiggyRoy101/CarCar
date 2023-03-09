@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.bg-image{
+  object-position: center center;
+  height: auto;
+  max-width: 100%;
+  width: auto\9;
+}
+
