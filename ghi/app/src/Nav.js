@@ -18,7 +18,7 @@ function Nav() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <a
@@ -30,7 +30,7 @@ function Nav() {
               >
                 Inventory
               </a>
-              <ul class="dropdown-menu dropdown-menu-dark">
+              <ul class="dropdown-menu dropdown-menu-dark bg-success">
                 <li>
                   <NavLink className="nav-link" to="/automobiles/">
                     Automobile Inventory
@@ -73,7 +73,7 @@ function Nav() {
               >
                 Services
               </a>
-              <ul class="dropdown-menu dropdown-menu-dark">
+              <ul class="dropdown-menu dropdown-menu-dark bg-success">
                 <li>
                   <NavLink className="nav-link" to="/technicianform">
                     Technician Form
@@ -96,7 +96,7 @@ function Nav() {
               >
                 Sales
               </a>
-              <ul class="dropdown-menu dropdown-menu-dark">
+              <ul class="dropdown-menu dropdown-menu-dark bg-success">
                 <li>
                   <NavLink className="nav-link" to="/sales_person">
                     Add Sales Person
