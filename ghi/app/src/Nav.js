@@ -18,60 +18,111 @@ function Nav() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/manufacturers/">
-                List of Manufacturers
-              </NavLink>
-              <NavLink className="nav-link" to="/technicianform">
-                Technician Form
-              </NavLink>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a
+                class="btn dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Inventory
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <NavLink className="nav-link" to="/manufacturers/">
+                    List of Manufacturers
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="nav-link" to="/manufacturers/new">
+                    Create a Manufacturer
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="nav-link" to="/models/">
+                    Vehicle Models
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="nav-link" to="/models/new">
+                    Add a Vehicle Model
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="nav-link" to="/automobiles/">
+                    Automobile Inventory
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="nav-link" to="/automobiles/new">
+                    Create Automobile
+                  </NavLink>
+                </li>
+              </ul>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/manufacturers/new">
-                Create a Manufacturer
-              </NavLink>
-              <NavLink className="nav-link" to="/ServiceAppointmentForm">
-                Create Service Appointment
-              </NavLink>
+            <li class="nav-item dropdown">
+              <a
+                class="btn dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Services
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <NavLink className="nav-link" to="/technicianform">
+                    Technician Form
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="nav-link" to="/ServiceAppointmentForm">
+                    Create Service Appointment
+                  </NavLink>
+                </li>
+              </ul>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/models/">
-                Vehicle Models
-              </NavLink>
-              <NavLink className="nav-link" to="/sales_person">
-                Add Sales Person
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className="nav-link" to="/models/new">
-                Add a Vehicle Model
-              </NavLink>
-              <NavLink className="nav-link" to="/customers">
-                Add Potential Customer
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className="nav-link" to="/automobiles/">
-                Automobile Inventory
-              </NavLink>
-              <NavLink className="nav-link" to="/sales/">
-                List of All Sales
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className="nav-link" to="/automobiles/new">
-                Create Automobile
-              </NavLink>
-              <NavLink className="nav-link" to="/sales/new">
-                Record a Sale
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className="nav-link" to="/sales/employee">
-                Employee Sales
-              </NavLink>
+            <li class="nav-item dropdown">
+              <a
+                class="btn dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Inventory
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <NavLink className="nav-link" to="/sales_person">
+                    Add Sales Person
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="nav-link" to="/customers">
+                    Add Potential Customer
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="nav-link" to="/sales/">
+                    List of All Sales
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="nav-link" to="/sales/new">
+                    Record a Sale
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="nav-link" to="/sales/employee">
+                    Employee Sales
+                  </NavLink>
+                </li>
+              </ul>
             </li>
           </ul>
         </div>
