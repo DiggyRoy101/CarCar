@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 function ServiceAppointmentForm() {
-<<<<<<< HEAD
-=======
   const [appointments, setAppointments] = useState([]);
->>>>>>> 59727edbbeaa20111abd60ea72a4b03e4a83a8ed
 
   const [formData, setFormData] = useState({
     vehicle: "",
