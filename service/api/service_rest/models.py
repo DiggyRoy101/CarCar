@@ -29,6 +29,7 @@ class Technician(models.Model):
     employee_no = models.PositiveSmallIntegerField()
 
 class Appointments(models.Model):
+
     vehicle = models.ForeignKey(
         AutomobileVO,
         related_name="vehicle",
@@ -44,9 +45,11 @@ class Appointments(models.Model):
         on_delete=models.CASCADE,
     )
     reason=models.CharField(max_length=200)
+    vip = models.BooleanField(default=False, null=True)
+    status = models.BooleanField(default=False, null=True)
     
-    def __str__(self):
-        return self.name
+
+
     
 
 

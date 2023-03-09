@@ -5,7 +5,7 @@ function AppointmentList () {
     const [appointments, setAppointments] = useState([])
 
     const getData = async () => {
-        const response = await fetch('http://localhost:8080/api/service/')
+        const response = await fetch('http://localhost:8080/api/appointments/')
         if (response.ok) {
             const data = await response.json()
             setAppointments(data.appointments)
@@ -27,7 +27,7 @@ function AppointmentList () {
     // }
     const handleDelete = async (e) => {
         console.log(e.target.id)
-        const serviceUrl = `http://localhost:8080/api/service/${e.target.id}/`
+        const serviceUrl = `http://localhost:8080/api/appointments/${e.target.id}/`
 
         const fetchConfigs = {
             method: "Delete",

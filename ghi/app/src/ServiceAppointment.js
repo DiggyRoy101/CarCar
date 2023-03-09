@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 
 function ServiceAppointmentForm() {
+<<<<<<< HEAD
+=======
   const [appointments, setAppointments] = useState([]);
+>>>>>>> 59727edbbeaa20111abd60ea72a4b03e4a83a8ed
 
   const [formData, setFormData] = useState({
     vehicle: "",
@@ -39,7 +42,7 @@ function ServiceAppointmentForm() {
     event.preventDefault();
     console.log(formData);
 
-    const serviceUrl = "http://localhost:8080/api/service/";
+    const serviceUrl = "http://localhost:8080/api/appointments/";
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(formData),

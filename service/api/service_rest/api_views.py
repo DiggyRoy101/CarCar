@@ -33,6 +33,9 @@ class ListAppointmentsEncoder(ModelEncoder):
         "vehicle": AutomobileVOEncoder(),
         "technician": TechnicianEncoder(),
     }
+
+# class ListServiceHistoryEncoder(ModelEncoder):
+#     model = 
  
 @require_http_methods(["GET", "POST"])
 def api_list_appointments(request):
@@ -64,33 +67,46 @@ def api_list_appointments(request):
             encoder=ListAppointmentsEncoder,
             safe=False,
         )
-
-@require_http_methods(["GET", "POST"])
-def api_list_service_history(request):
+    
+@require_http_methods(["GET", "DELETE"])
+def api_show_appointment(request, id=None):
     if request.method == "GET":
-        service_history = service_history.objects.all()
+        appointment = Appointments.objects.get(id=id)
         return JsonResponse(
-            {"appointments": appointments},
-            encoder=ListAppointmentsEncoder,
-        )
-    else:
-        content = json.loads(request.body)
-        try:
-            bin_href = content["bin"]
-            bin = BinVo.objects.get(import_href=bin_href)
-            content["bin"] = bin
-        except BinVo.DoesNotExist:
-            return JsonResponse(
-                {"message": "Invalid bin id"},
-                status=400,
-            )
-        
-        newBin = Shoes.objects.create(**content)
-        return JsonResponse(
-            newBin,
+            appointment,
             encoder=ListAppointmentsEncoder,
             safe=False,
-        )   
+        )
+    elif request.method == "DELETE":
+        count, _ = Appointments.objects.filter(id=id).delete()
+        return JsonResponse({"deleted": count > 0})
+
+# @require_http_methods(["GET", "POST"])
+# def api_list_service_history(request, appointment_vehicle=None):
+#     if request.method == "GET":
+#         appointments = Appointments.objects.filter(, status=True)
+#         return JsonResponse(
+#             {"appointments": appointments},
+#             encoder=ListAppointmentsEncoder,
+#         )
+#     else:
+#         content = json.loads(request.body)
+#         try:
+#             bin_href = content["bin"]
+#             bin = BinVo.objects.get(import_href=bin_href)
+#             content["bin"] = bin
+#         except BinVo.DoesNotExist:
+#             return JsonResponse(
+#                 {"message": "Invalid bin id"},
+#                 status=400,
+#             )
+        
+#         newBin = Shoes.objects.create(**content)
+#         return JsonResponse(
+#             newBin,
+#             encoder=ListAppointmentsEncoder,
+#             safe=False,
+#         )   
     
 @require_http_methods(["GET","POST"])
 def api_technician(request):
