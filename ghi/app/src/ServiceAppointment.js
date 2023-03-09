@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 function ServiceAppointmentForm() {
-    const [appointments, setAppointments] = useState([])
 
     const [formData, setFormData] = useState({
         vehicle: "",
@@ -31,7 +30,7 @@ function ServiceAppointmentForm() {
         event.preventDefault();
         console.log(formData)
 
-        const serviceUrl = 'http://localhost:8080/api/service/';
+        const serviceUrl = 'http://localhost:8080/api/appointments/';
             const fetchConfig = {
             method: "post",
             body: JSON.stringify(formData),
@@ -51,10 +50,7 @@ function ServiceAppointmentForm() {
                 })
             }
     };
-    useEffect(() => {
-        fetchData();
-    }, [])
-
+    
     return (
         <div className="row">
             <div className="offset-3 col-6">
