@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 
 const AutomobileInventory = () => {
   const [automobileInventory, setAutomobileInventory] = useState([]);
-  const fetchData = async () => {
+  const [autoVO, setAutoVO] = useState([]);
+
+  const fetchInventory = async () => {
     const url = "http://localhost:8100/api/automobiles/";
 
     const response = await fetch(url);
@@ -13,8 +15,20 @@ const AutomobileInventory = () => {
     }
   };
 
+  const fetchAutoVO = async () => {
+    const url = "http://localhost:8090/api/autos/";
+    const response = await fetch(url);
+
+    if (response.ok) {
+      const data = await response.json();
+      const availableCars = data.autos.filter((car) => car.sold === false);
+      setAutoVO(availableCars);
+    }
+  };
+
   useEffect(() => {
-    fetchData();
+    fetchInventory();
+    fetchAutoVO();
   }, []);
 
   return (
@@ -31,14 +45,17 @@ const AutomobileInventory = () => {
           </tr>
         </thead>
         <tbody>
-          {automobileInventory.map((automobile) => {
+          {autoVO.map((automobile) => {
+            const auto = automobileInventory.find(
+              (auto) => auto.id === automobile.id
+            );
             return (
               <tr key={automobile.id}>
-                <td>{automobile.vin}</td>
-                <td>{automobile.color}</td>
-                <td>{automobile.year}</td>
-                <td>{automobile.model.name}</td>
-                <td>{automobile.model.manufacturer.name}</td>
+                <td>{auto?.vin}</td>
+                <td>{auto?.color}</td>
+                <td>{auto?.year}</td>
+                <td>{auto?.model?.name}</td>
+                <td>{auto?.model?.manufacturer?.name}</td>
               </tr>
             );
           })}
