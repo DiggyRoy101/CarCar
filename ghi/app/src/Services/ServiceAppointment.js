@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 function ServiceAppointmentForm() {
-  const [appointments, setAppointments] = useState([]);
 
   const [formData, setFormData] = useState({
     vehicle: "",
@@ -18,14 +17,7 @@ function ServiceAppointmentForm() {
       [e.target.name]: e.target.value,
     });
   };
-  const fetchData = async () => {
-    const url = "http://localhost:8100/api/inventory/";
-    const response = await fetch(url);
 
-    if (response.ok) {
-      const data = await response.json();
-      setAppointments(data.appointments);
-    }
     // const fetchData = async () => {
     //     const url = 'http://localhost:8100/api/inventory/';
     //     const response = await fetch(url)
@@ -34,12 +26,11 @@ function ServiceAppointmentForm() {
     //         const data = await response.json()
     //         setAppointments(data.appointments)
     //         }
-  };
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(formData);
 
-    const serviceUrl = "http://localhost:8080/api/appointments/";
+    const appointmentUrl = "http://localhost:8080/api/appointments/";
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(formData),
@@ -47,8 +38,10 @@ function ServiceAppointmentForm() {
         "Content-Type": "application/json",
       },
     };
-    const response = await fetch(serviceUrl, fetchConfig);
+    const response = await fetch(appointmentUrl, fetchConfig);
     if (response.ok) {
+      const newAppointment = await response.json();
+
       setFormData({
         vin: "",
         vehicle_owner: "",
@@ -59,10 +52,6 @@ function ServiceAppointmentForm() {
       });
     }
   };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   return (
     <div className="row">

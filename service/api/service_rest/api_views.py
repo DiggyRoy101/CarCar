@@ -27,7 +27,9 @@ class ListAppointmentsEncoder(ModelEncoder):
         "date",
         "time",
         "technician",
-        "reason"
+        "reason",
+        "vip",
+        "completion"
     ]
     encoders = {
         "vehicle": AutomobileVOEncoder(),

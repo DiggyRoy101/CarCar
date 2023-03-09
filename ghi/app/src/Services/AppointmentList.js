@@ -15,16 +15,17 @@ function AppointmentList () {
     useEffect(()=> {
         getData()
     }, [])
-    // const handleClick = async (e) => {
-    //     console.log(e.target)
-    //     const appointmentresponse = await fetch(`http://localhost:8080/api/services/${e.target.id}/`)
-    //     if (appointmentresponse.ok){
-    //         const appointmentdetails = await appointmentresponse.json()
-    //         console.log(appointmentdetails)
-    //         alert(`The ${appointmentdetails.vin} ${appointmentdetails.customer_name} can be found in: \n\nCloset Name: ${.bin.closet_name}\nBin Number: ${shoedetails.bin.bin_number}\nBin Size: ${shoedetails.bin.bin_size}`
-    //         )
-    //     }
-    // }
+    const handleClick = async (e) => {
+        console.log(e.target)
+        const appointmentresponse = await fetch(`http://localhost:8080/api/appointments/${e.target.id}/`)
+        if (appointmentresponse.ok){
+            const appointmentdetails = await appointmentresponse.json()
+            console.log(appointmentdetails)
+            alert(`The ${appointmentdetails.vin} ${appointmentdetails.customer_name} can be found in: \n\nCloset Name: ${.bin.closet_name}\nBin Number: ${shoedetails.bin.bin_number}\nBin Size: ${shoedetails.bin.bin_size}`
+            )
+        }
+    }
+
     const handleDelete = async (e) => {
         console.log(e.target.id)
         const serviceUrl = `http://localhost:8080/api/appointments/${e.target.id}/`
@@ -62,7 +63,7 @@ function AppointmentList () {
                         <td>{ appointment.reason}</td>
                         {/* <td><img alt="" style={{ width: 200, height: 200}} src={shoe.picture_url}/></td> */}
                         <td><button onClick={handleDelete} id={appointment.id} className="btn btn-danger">Cancel</button></td>
-                        <td><button onClick={handleClick} value={shoe.bin} id={shoe.id} className="btn btn-primary">Locate</button></td>
+                        <td><button onClick={handleClick} value={shoe.bin} id={shoe.id} className="btn btn-primary">Finished</button></td>
                     </tr>
                 );
                 })}

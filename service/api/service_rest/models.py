@@ -46,7 +46,7 @@ class Appointments(models.Model):
     )
     reason=models.CharField(max_length=200)
     vip = models.BooleanField(default=False, null=True)
-    status = models.BooleanField(default=False, null=True)
+    completion = models.BooleanField(default=False, null=True)
     
 
 
