@@ -26,7 +26,6 @@ const ManufacturerForm = () => {
     const response = await fetch(manufacturerUrl, fetchConfig);
     if (response.ok) {
       const newManufacturer = await response.json();
-      console.log(newManufacturer);
 
       setFormData({
         name: "",

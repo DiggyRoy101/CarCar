@@ -39,7 +39,6 @@ const VehicleModelForm = () => {
     const response = await fetch(vehicleModelUrl, fetchConfig);
     if (response.ok) {
       const newVehicleModel = await response.json();
-      console.log(newVehicleModel);
 
       setFormData({
         name: "",

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const SalesForm = () => {
+  const [inventory, setInventory] = useState([]);
   const [automobiles, setAutomobiles] = useState([]);
   const [sellers, setSellers] = useState([]);
   const [customers, setCustomers] = useState([]);
@@ -18,13 +19,24 @@ const SalesForm = () => {
     });
   };
 
-  const fetchAuto = async () => {
+  const fetchInventory = async () => {
     const url = "http://localhost:8100/api/automobiles/";
     const response = await fetch(url);
 
     if (response.ok) {
       const data = await response.json();
-      setAutomobiles(data.autos);
+      setInventory(data.autos);
+    }
+  };
+
+  const fetchAutoVO = async () => {
+    const url = "http://localhost:8090/api/autos/";
+    const response = await fetch(url);
+
+    if (response.ok) {
+      const data = await response.json();
+      const availableCars = data.autos.filter((car) => car.sold === false);
+      setAutomobiles(availableCars);
     }
   };
 
@@ -62,7 +74,6 @@ const SalesForm = () => {
     const response = await fetch(salesUrl, fetchConfig);
     if (response.ok) {
       const newSale = await response.json();
-      console.log(newSale);
 
       setFormData({
         automobile: "",
@@ -74,9 +85,10 @@ const SalesForm = () => {
   };
 
   useEffect(() => {
-    fetchAuto();
+    fetchAutoVO();
     fetchSellers();
     fetchCustomers();
+    fetchInventory();
   }, []);
 
   return (
@@ -96,9 +108,12 @@ const SalesForm = () => {
               >
                 <option value="">Choose an Automobile</option>
                 {automobiles.map((automobile) => {
+                  const auto = inventory.find(
+                    (auto) => auto.id === automobile.id
+                  );
                   return (
                     <option key={automobile.href} value={automobile.href}>
-                      {automobile.model.name}
+                      {auto?.model?.name}
                     </option>
                   );
                 })}
