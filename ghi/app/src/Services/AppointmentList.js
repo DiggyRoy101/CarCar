@@ -14,7 +14,6 @@ function AppointmentList() {
   };
 
   const handleClick = async (e) => {
-    console.log(e.target);
     const appointmentStatusUrl = `http://localhost:8080/api/appointments/${e.target.id}/`;
 
     const fetchStatus = {
@@ -55,7 +54,6 @@ function AppointmentList() {
       setAutomobiles(data.autos);
     }
   };
-  console.log(automobiles);
   useEffect(() => {
     fetchData();
     fetchAutos();

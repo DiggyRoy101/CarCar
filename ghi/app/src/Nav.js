@@ -89,6 +89,11 @@ function Nav() {
                     Appointment List
                   </NavLink>
                 </li>
+                <li>
+                  <NavLink className="nav-link" to="/ServiceHistory">
+                    Service History
+                  </NavLink>
+                </li>
               </ul>
             </li>
             <li className="nav-item dropdown">
