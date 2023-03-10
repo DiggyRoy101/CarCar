@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 function ServiceAppointmentForm() {
+  const [technicians, setTechnicians] = useState([]);
   const [formData, setFormData] = useState({
-    vehicle: "",
+    vin: "",
     customer_name: "",
     date: "",
     time: "",
@@ -17,14 +18,16 @@ function ServiceAppointmentForm() {
     });
   };
 
-  // const fetchData = async () => {
-  //     const url = 'http://localhost:8100/api/inventory/';
-  //     const response = await fetch(url)
+  const fetchtechnicians = async () => {
+    const url = "http://localhost:8080/api/technician/";
+    const response = await fetch(url);
 
-  //     if(response.ok) {
-  //         const data = await response.json()
-  //         setAppointments(data.appointments)
-  //         }
+    if (response.ok) {
+      const data = await response.json();
+      setTechnicians(data.technicians);
+    }
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -36,13 +39,13 @@ function ServiceAppointmentForm() {
         "Content-Type": "application/json",
       },
     };
+    console.log(formData);
     const response = await fetch(appointmentUrl, fetchConfig);
     if (response.ok) {
       const newAppointment = await response.json();
       console.log(newAppointment);
-
       setFormData({
-        vehicle: "",
+        vin: "",
         customer_name: "",
         date: "",
         time: "",
@@ -51,6 +54,9 @@ function ServiceAppointmentForm() {
       });
     }
   };
+  useEffect(() => {
+    fetchtechnicians();
+  }, []);
 
   return (
     <div className="row">
@@ -75,14 +81,14 @@ function ServiceAppointmentForm() {
               <input
                 onChange={handleNameChange}
                 value={formData.customer_name}
-                placeholder="customer_name"
+                placeholder="Customer_Name"
                 required
                 type="text"
                 name="customer_name"
                 id="customer_name"
                 className="form-control"
               ></input>
-              <label htmlFor="customer_name">customer_name</label>
+              <label htmlFor="Customer_Name">Vehicle Owner</label>
             </div>
             <div className="form-floating mb-3">
               <input
@@ -110,18 +116,24 @@ function ServiceAppointmentForm() {
               ></input>
               <label htmlFor="Time">Time</label>
             </div>
-            <div className="form-floating mb-3">
-              <input
+            <div className="mb-3">
+              <select
                 onChange={handleNameChange}
-                value={formData.technician}
-                placeholder="Technician"
                 required
-                type="text"
+                value={formData.technician}
                 name="technician"
                 id="technician"
-                className="form-control"
-              ></input>
-              <label htmlFor="Technician">Technician</label>
+                className="form-select"
+              >
+                <option value="">Choose a Technician</option>
+                {technicians.map((technician) => {
+                  return (
+                    <option key={technician.id} value={technician.id}>
+                      {technician.name}
+                    </option>
+                  );
+                })}
+              </select>
             </div>
             <div className="form-floating mb-3">
               <input

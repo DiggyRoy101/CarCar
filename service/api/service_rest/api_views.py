@@ -17,26 +17,26 @@ class TechnicianEncoder(ModelEncoder):
     properties= [
         "name",
         "employee_no",
+        "id"
     ]
 
 class ListAppointmentsEncoder(ModelEncoder):
     model = Appointments
     properties = [
-        "vehicle",
+        "vin",
         "customer_name",
         "date",
         "time",
         "technician",
-        "reason"
+        "reason",
+        "vip",
+        "completion"
     ]
     encoders = {
         "vehicle": AutomobileVOEncoder(),
         "technician": TechnicianEncoder(),
     }
 
-# class ListServiceHistoryEncoder(ModelEncoder):
-#     model = 
- 
 @require_http_methods(["GET", "POST"])
 def api_list_appointments(request):
     if request.method == "GET":
@@ -47,13 +47,7 @@ def api_list_appointments(request):
         )
     else:
         content = json.loads(request.body)
-        print(content)
         try:
-            vehicle_href = content["vehicle"]
-            print(vehicle_href,AutomobileVO.objects.all)
-            vehicle = AutomobileVO.objects.get(import_href=vehicle_href)
-            print("bye")
-            content["vehicle"] = vehicle
             technician_id = content["technician"]
             technician = Technician.objects.get(id=technician_id)
             content["technician"] = technician
@@ -67,7 +61,7 @@ def api_list_appointments(request):
             encoder=ListAppointmentsEncoder,
             safe=False,
         )
-    
+
 @require_http_methods(["GET", "DELETE"])
 def api_show_appointment(request, id=None):
     if request.method == "GET":
@@ -109,7 +103,7 @@ def api_show_appointment(request, id=None):
 #         )   
     
 @require_http_methods(["GET","POST"])
-def api_technician(request):
+def api_list_technician(request):
     if request.method =="GET":
         technicians = Technician.objects.all()
         return JsonResponse(
@@ -124,5 +118,20 @@ def api_technician(request):
             encoder=TechnicianEncoder,
             safe=False,
         )
+
+
+@require_http_methods(["GET", "DELETE"])
+def api_show_technician(request, id=None):
+    if request.method == "GET":
+        location = Technician.objects.get(id=id)
+        return JsonResponse(
+            location,
+            encoder=TechnicianEncoder,
+            safe=False,
+        )
+    elif request.method == "DELETE":
+        count, _ = Technician.objects.filter(id=id).delete()
+        return JsonResponse({"deleted": count > 0}) 
+
 
 
