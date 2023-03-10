@@ -18,7 +18,7 @@ const VehicleModelList = () => {
   }, []);
 
   return (
-    <div>
+    <div className="px-4 my-4">
       <h1>Vehicle Models</h1>
       <table className="table table-striped">
         <thead>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 function ServiceAppointmentForm() {
-  const [technicians, setTechnicians] = useState([])
+  const [technicians, setTechnicians] = useState([]);
   const [formData, setFormData] = useState({
     vin: "",
     customer_name: "",
@@ -39,11 +39,11 @@ function ServiceAppointmentForm() {
         "Content-Type": "application/json",
       },
     };
-    console.log(formData)
+    console.log(formData);
     const response = await fetch(appointmentUrl, fetchConfig);
     if (response.ok) {
       const newAppointment = await response.json();
-      console.log(newAppointment)
+      console.log(newAppointment);
       setFormData({
         vin: "",
         customer_name: "",
@@ -55,9 +55,8 @@ function ServiceAppointmentForm() {
     }
   };
   useEffect(() => {
-    fetchtechnicians()
-  }, [])
-  
+    fetchtechnicians();
+  }, []);
 
   return (
     <div className="row">
@@ -68,15 +67,15 @@ function ServiceAppointmentForm() {
             <div className="form-floating mb-3">
               <input
                 onChange={handleNameChange}
-                value={formData.vin}
-                placeholder="Vin"
+                value={formData.vehicle}
+                placeholder="vehicle"
                 required
                 type="text"
-                name="vin"
-                id="vin"
+                name="vehicle"
+                id="vehicle"
                 className="form-control"
               ></input>
-              <label htmlFor="Vin">VIN</label>
+              <label htmlFor="vehicle">vehicle</label>
             </div>
             <div className="form-floating mb-3">
               <input

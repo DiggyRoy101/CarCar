@@ -20,7 +20,7 @@ function App() {
   return (
     <BrowserRouter>
       <Nav />
-      <div className="container">
+      <div className="container main">
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/manufacturers/" element={<ManufacturerList />} />

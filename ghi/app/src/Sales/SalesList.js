@@ -10,6 +10,7 @@ const SalesList = () => {
     if (response.ok) {
       const data = await response.json();
       setSalesList(data.sales);
+      console.log(salesList);
     }
   };
 
@@ -18,7 +19,7 @@ const SalesList = () => {
   }, []);
 
   return (
-    <div className="shadow p-4 mt-4">
+    <div className="px-4 my-4">
       <div className="mb-3">
         <h1>List of All Sales</h1>
         <table className="table table-striped">

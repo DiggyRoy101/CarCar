@@ -32,7 +32,7 @@ const AutomobileInventory = () => {
   }, []);
 
   return (
-    <div>
+    <div className="px-4 my-4">
       <h1>Inventory</h1>
       <table className="table table-striped">
         <thead>
@@ -47,7 +47,7 @@ const AutomobileInventory = () => {
         <tbody>
           {autoVO.map((automobile) => {
             const auto = automobileInventory.find(
-              (auto) => auto.id === automobile.id
+              (auto) => auto.href === automobile.import_href
             );
             return (
               <tr key={automobile.id}>
