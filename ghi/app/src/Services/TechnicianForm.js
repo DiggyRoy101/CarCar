@@ -41,7 +41,7 @@ function TechnicianForm() {
             <div className="form-floating mb-3">
               <input
                 onChange={handleNameChange}
-                value={formData.technician}
+                value={formData.name}
                 placeholder="Name"
                 required
                 type="text"
