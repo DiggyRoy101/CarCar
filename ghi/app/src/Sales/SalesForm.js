@@ -108,11 +108,9 @@ const SalesForm = () => {
               >
                 <option value="">Choose an Automobile</option>
                 {automobiles.map((automobile) => {
-                  console.log(automobile);
                   const auto = inventory.find(
                     (auto) => auto.href === automobile.import_href
                   );
-                  console.log(auto);
                   return (
                     <option
                       key={automobile.import_href}
