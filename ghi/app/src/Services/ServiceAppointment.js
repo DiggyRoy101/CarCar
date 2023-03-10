@@ -54,6 +54,8 @@ function ServiceAppointmentForm() {
       });
     }
   };
+
+  
   useEffect(() => {
     fetchtechnicians();
   }, []);
@@ -67,15 +69,15 @@ function ServiceAppointmentForm() {
             <div className="form-floating mb-3">
               <input
                 onChange={handleNameChange}
-                value={formData.vehicle}
-                placeholder="vehicle"
+                value={formData.vin}
+                placeholder="vin"
                 required
                 type="text"
-                name="vehicle"
-                id="vehicle"
+                name="vin"
+                id="vin"
                 className="form-control"
               ></input>
-              <label htmlFor="vehicle">vehicle</label>
+              <label htmlFor="vehicle">VIN</label>
             </div>
             <div className="form-floating mb-3">
               <input
