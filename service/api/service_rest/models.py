@@ -30,12 +30,13 @@ class Technician(models.Model):
 
 class Appointments(models.Model):
 
-    vehicle = models.ForeignKey(
-        AutomobileVO,
-        related_name="vehicle",
-        on_delete=models.CASCADE,
-        default=None
-    )
+    # vehicle = models.ForeignKey(
+    #     AutomobileVO,
+    #     related_name="vehicle",
+    #     on_delete=models.CASCADE,
+    #     default=None
+    # )
+    vin=models.CharField(max_length=17, null=True) 
     customer_name=models.CharField(max_length=50)
     date=models.CharField(max_length=50)
     time=models.CharField(max_length=50)
