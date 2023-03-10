@@ -1,3 +1,4 @@
+from sales_rest.models import AutomobileVO
 import django
 import os
 import sys
@@ -5,13 +6,11 @@ import time
 import json
 import requests
 
+
 sys.path.append("")
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "sales_project.settings")
 django.setup()
 
-# Import models from sales_rest, here.
-# from sales_rest.models import Something
-from sales_rest.models import AutomobileVO
 
 def get_inventory():
     response = requests.get('http://inventory-api:8000/api/automobiles/')
@@ -24,11 +23,11 @@ def get_inventory():
             }
         )
 
+
 def poll():
     while True:
         print('Sales poller polling for data')
         try:
-            # Write your polling logic, here
             get_inventory()
         except Exception as e:
             print(e, file=sys.stderr)
