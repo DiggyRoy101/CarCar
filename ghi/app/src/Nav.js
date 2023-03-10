@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 function Nav() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-success">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
           CarCar
@@ -30,7 +30,7 @@ function Nav() {
               >
                 Inventory
               </a>
-              <ul className="dropdown-menu dropdown-menu-dark bg-success">
+              <ul className="dropdown-menu dropdown-menu-dark bg-dark">
                 <li>
                   <NavLink className="nav-link" to="/automobiles/">
                     Automobile Inventory
@@ -73,7 +73,7 @@ function Nav() {
               >
                 Services
               </a>
-              <ul className="dropdown-menu dropdown-menu-dark bg-success">
+              <ul className="dropdown-menu dropdown-menu-dark bg-dark">
                 <li>
                   <NavLink className="nav-link" to="/technicianform">
                     Technician Form
@@ -96,7 +96,7 @@ function Nav() {
               >
                 Sales
               </a>
-              <ul className="dropdown-menu dropdown-menu-dark bg-success">
+              <ul className="dropdown-menu dropdown-menu-dark bg-dark">
                 <li>
                   <NavLink className="nav-link" to="/sales_person">
                     Add Sales Person

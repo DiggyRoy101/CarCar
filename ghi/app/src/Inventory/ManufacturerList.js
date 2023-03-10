@@ -18,7 +18,7 @@ const ManufacturerList = () => {
   }, []);
 
   return (
-    <div>
+    <div className="px-4 my-4">
       <h1>Manufacturers</h1>
       <table className="table table-striped">
         <thead>

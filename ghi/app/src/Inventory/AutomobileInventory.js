@@ -32,7 +32,7 @@ const AutomobileInventory = () => {
   }, []);
 
   return (
-    <div>
+    <div className="px-4 my-4">
       <h1>Inventory</h1>
       <table className="table table-striped">
         <thead>
