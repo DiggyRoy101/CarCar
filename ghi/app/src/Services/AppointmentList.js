@@ -2,33 +2,45 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 function AppointmentList () {
-    const [appointments, setAppointments] = useState([])
+    const [appointmentsList, setAppointmentsList] = useState([])
+    const [vip, setVIP] = useState([])
 
-    const getData = async () => {
+    const fetchData = async () => {
         const response = await fetch('http://localhost:8080/api/appointments/')
         if (response.ok) {
             const data = await response.json()
-            setAppointments(data.appointments)
+            setAppointmentsList(data.appointments)
         }
     }
 
     useEffect(()=> {
-        getData()
+        fetchData()
     }, [])
     const handleClick = async (e) => {
         console.log(e.target)
-        const appointmentresponse = await fetch(`http://localhost:8080/api/appointments/${e.target.id}/`)
-        if (appointmentresponse.ok){
-            const appointmentdetails = await appointmentresponse.json()
-            console.log(appointmentdetails)
-            alert(`The ${appointmentdetails.vin} ${appointmentdetails.customer_name} can be found in: \n\nCloset Name: ${.bin.closet_name}\nBin Number: ${shoedetails.bin.bin_number}\nBin Size: ${shoedetails.bin.bin_size}`
-            )
+        const appointmentStatusUrl =`http://localhost:8080/api/appointments/${e.target.id}/`
+        // if (appointmentresponse.ok){
+        //     const appointmentdetails = await appointmentresponse.json()
+        //     console.log(appointmentdetails)
+        const fetchStatus = {
+            method: "PUT",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                completion: true
+            })
         }
-    }
 
+        const response = await fetch(appointmentStatusUrl, fetchStatus)
+        fetchData()
+    }
+    const filterAppointmentList = appointmentsList.filter(
+        (appointment) => appointment.completion === false
+    )
+    
     const handleDelete = async (e) => {
-        console.log(e.target.id)
-        const serviceUrl = `http://localhost:8080/api/appointments/${e.target.id}/`
+        const appointmentUrl = `http://localhost:8080/api/appointments/${e.target.id}/`
 
         const fetchConfigs = {
             method: "Delete",
@@ -37,11 +49,22 @@ function AppointmentList () {
             }
         }
 
-        const response = await fetch(serviceUrl, fetchConfigs)
-        getData()
+        const response = await fetch(appointmentUrl, fetchConfigs)
+        fetchData()
     }
 
-    return (
+    const fetchVin = async () => {
+        const response = await fetch('http://localhost:8100/api/inventory/')
+        if (response.ok) {
+            const data = await response.json()
+            setVIP(data.vin)
+        }
+    }
+
+     return (
+    <div className="shadow p-4 mt-4">
+        <div className="mb-3">
+        <h1>List of All Appointments</h1>
         <table className="table table-striped">
             <thead>
                 <tr>
@@ -49,26 +72,30 @@ function AppointmentList () {
                     <th>Customer</th>
                     <th>Date</th>
                     <th>Time</th>
+                    <th>Technician</th>
+                    <th>Reason</th>
                 </tr>
             </thead>
             <tbody >
-                {appointments.map(appointment => {
+                {filterAppointmentList.map(appointment => {
                 return (
                     <tr key={appointment.id}>
                         <td>{ appointment.vin }</td>
                         <td>{ appointment.customer_name }</td>
                         <td>{ appointment.date }</td>
                         <td>{ appointment.time }</td>
-                        <td>{ appointment.technician }</td>
+                        <td>{ appointment.technician.name }</td>
                         <td>{ appointment.reason}</td>
                         {/* <td><img alt="" style={{ width: 200, height: 200}} src={shoe.picture_url}/></td> */}
                         <td><button onClick={handleDelete} id={appointment.id} className="btn btn-danger">Cancel</button></td>
-                        <td><button onClick={handleClick} value={shoe.bin} id={shoe.id} className="btn btn-primary">Finished</button></td>
+                        <td><button onClick={handleClick} value={appointment.completion} id={appointment.id} className="btn btn-primary">Finished</button></td>
                     </tr>
                 );
                 })}
             </tbody>
         </table>
+      </div>
+    </div>
 )};
 
 export default AppointmentList;
