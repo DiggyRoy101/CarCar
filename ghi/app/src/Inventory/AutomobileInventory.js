@@ -47,7 +47,7 @@ const AutomobileInventory = () => {
         <tbody>
           {autoVO.map((automobile) => {
             const auto = automobileInventory.find(
-              (auto) => auto.id === automobile.id
+              (auto) => auto.href === automobile.import_href
             );
             return (
               <tr key={automobile.id}>
