@@ -16,9 +16,7 @@ function AppointmentList() {
   const handleClick = async (e) => {
     console.log(e.target);
     const appointmentStatusUrl = `http://localhost:8080/api/appointments/${e.target.id}/`;
-    // if (appointmentresponse.ok){
-    //     const appointmentdetails = await appointmentresponse.json()
-    //     console.log(appointmentdetails)
+
     const fetchStatus = {
       method: "PUT",
       headers: {
@@ -96,7 +94,6 @@ function AppointmentList() {
                   <td>{appointment.technician.name}</td>
                   <td>{appointment.reason}</td>
                   <td>{vip}</td>
-                  {/* <td><img alt="" style={{ width: 200, height: 200}} src={shoe.picture_url}/></td> */}
                   <td>
                     <button
                       onClick={handleDelete}
