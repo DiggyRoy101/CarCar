@@ -9,7 +9,7 @@ Team:
 
 ## Service microservice
 
-The service microservice uses 5 models: ManufacturerVO, VehicleModelVO, AutomobileVO, Tehnician, and Appointments. The VO's poll their data from the Inventory model and grab only necessary information. This allows Appointments to access Inventory models information through foreign key's between the VO's, without changing or effecting the original data of Inventory.
+The service microservice uses 5 models: ManufacturerVO, VehicleModelVO, AutomobileVO, Tehnician, and Appointments. The VO's poll their data from the Inventory model and grab only necessary information. This allows Appointments to access Inventory models information through foreign key's between the VO's, without changing or effecting the original data of Inventory. Technicians can be created, and selected for each appointment. The technician can be then assigned to a particular service job appointment through a foreign key, and the appointment can be marked for completion, or deleted at choice. The appointments are then stored, and can be referenced as service history for the desired VIN. 
 
 ## Sales microservice
 
