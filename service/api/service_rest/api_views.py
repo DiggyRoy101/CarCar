@@ -34,14 +34,18 @@ def api_list_appointments(request):
 
 @require_http_methods(["GET", "DELETE", "PUT"])
 def api_show_appointment(request, id=None):
-    if request.method == "GET":
-        appointment = Appointments.objects.get(id=id)
-        return JsonResponse(
-            appointment,
-            encoder=ListAppointmentsEncoder,
-            safe=False,
-        )
-    elif request.method == "DELETE":
+    try:
+        if request.method == "GET":
+            appointment = Appointments.objects.get(id=id)
+            return JsonResponse(
+                appointment,
+                encoder=ListAppointmentsEncoder,
+                safe=False,
+            )
+    except:
+        return JsonResponse({"message": "Invalid Appointment id"}, status=404)
+
+    if request.method == "DELETE":
         count, _ = Appointments.objects.filter(id=id).delete()
         return JsonResponse({"deleted": count > 0})
     else:
@@ -76,13 +80,17 @@ def api_list_technician(request):
 
 @require_http_methods(["GET", "DELETE"])
 def api_show_technician(request, id=None):
-    if request.method == "GET":
-        location = Technician.objects.get(id=id)
-        return JsonResponse(
-            location,
-            encoder=TechnicianEncoder,
-            safe=False,
-        )
-    elif request.method == "DELETE":
+    try:
+        if request.method == "GET":
+            location = Technician.objects.get(id=id)
+            return JsonResponse(
+                location,
+                encoder=TechnicianEncoder,
+                safe=False,
+            )
+    except:
+        return JsonResponse({"message": "Invalid Technician id"}, status=404)
+
+    if request.method == "DELETE":
         count, _ = Technician.objects.filter(id=id).delete()
         return JsonResponse({"deleted": count > 0})
