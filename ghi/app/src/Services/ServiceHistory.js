@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 function ServiceHistory() {
   const [searchVIN, setSearchVIN] = useState("");
   const [appointmentList, setappointmentList] = useState([]);
+
   const fetchData = async () => {
     const response = await fetch("http://localhost:8080/api/appointments/");
     if (response.ok) {
@@ -21,11 +22,10 @@ function ServiceHistory() {
     setSearchVIN(e.target.value);
   };
 
-  if (searchVIN.length > 0) {
-    appointmentList.filter((appointment) => {
-      return appointment.vin.match(searchVIN);
-    });
-  }
+  const filteredList = appointmentList.filter((appointment) => {
+    return appointment.vin.match(searchVIN);
+  });
+
   return (
     <div className="shadow p-4 mt-4">
       <div className="mb-3">
@@ -48,7 +48,7 @@ function ServiceHistory() {
             </tr>
           </thead>
           <tbody>
-            {appointmentList.map((appointment) => {
+            {filteredList.map((appointment) => {
               return (
                 <tr key={appointment.id}>
                   <td>{appointment.vin}</td>

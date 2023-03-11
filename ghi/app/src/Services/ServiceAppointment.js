@@ -39,11 +39,10 @@ function ServiceAppointmentForm() {
         "Content-Type": "application/json",
       },
     };
-    console.log(formData);
+
     const response = await fetch(appointmentUrl, fetchConfig);
     if (response.ok) {
       const newAppointment = await response.json();
-      console.log(newAppointment);
       setFormData({
         vin: "",
         customer_name: "",
@@ -55,7 +54,6 @@ function ServiceAppointmentForm() {
     }
   };
 
-  
   useEffect(() => {
     fetchtechnicians();
   }, []);

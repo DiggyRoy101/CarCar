@@ -3,39 +3,8 @@ from common.json import ModelEncoder
 from django.http import JsonResponse
 import json
 from django.views.decorators.http import require_http_methods
+from .api_encoders import ListAppointmentsEncoder, TechnicianEncoder
 from .models import Appointments, Technician, AutomobileVO
-
-
-class AutomobileVOEncoder(ModelEncoder):
-    model = AutomobileVO
-    properties = [
-        "import_href",
-        "vin",
-    ]
-
-
-class TechnicianEncoder(ModelEncoder):
-    model = Technician
-    properties = ["name", "employee_no", "id"]
-
-
-class ListAppointmentsEncoder(ModelEncoder):
-    model = Appointments
-    properties = [
-        "vin",
-        "customer_name",
-        "date",
-        "time",
-        "technician",
-        "reason",
-        "vip",
-        "completion",
-        "id",
-    ]
-    encoders = {
-        "vehicle": AutomobileVOEncoder(),
-        "technician": TechnicianEncoder(),
-    }
 
 
 @require_http_methods(["GET", "POST"])
@@ -85,34 +54,6 @@ def api_show_appointment(request, id=None):
             encoder=ListAppointmentsEncoder,
             safe=False,
         )
-
-
-# @require_http_methods(["GET", "POST"])
-# def api_list_service_history(request, appointment_vehicle=None):
-#     if request.method == "GET":
-#         appointments = Appointments.objects.filter(, status=True)
-#         return JsonResponse(
-#             {"appointments": appointments},
-#             encoder=ListAppointmentsEncoder,
-#         )
-#     else:
-#         content = json.loads(request.body)
-#         try:
-#             bin_href = content["bin"]
-#             bin = BinVo.objects.get(import_href=bin_href)
-#             content["bin"] = bin
-#         except BinVo.DoesNotExist:
-#             return JsonResponse(
-#                 {"message": "Invalid bin id"},
-#                 status=400,
-#             )
-
-#         newBin = Shoes.objects.create(**content)
-#         return JsonResponse(
-#             newBin,
-#             encoder=ListAppointmentsEncoder,
-#             safe=False,
-#         )
 
 
 @require_http_methods(["GET", "POST"])
